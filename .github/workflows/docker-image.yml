@@ -11,9 +11,9 @@ jobs:
     - name: Docker build and push
       uses: cloudposse/github-action-docker-build-push@1.14.0
       with:
-        organization: ${{secrets.DOCKER_USER}}
+        organization: 'arthurd2'
         repository: 'nfeminer'
         image_name: 'arthurd2/nfeminer'
         registry: registry.hub.docker.com
-        login: ${{secrets.DOCKER_USER}}
+        login: 'arthurd2'
         password: ${{secrets.DOCKER_PASS}}
