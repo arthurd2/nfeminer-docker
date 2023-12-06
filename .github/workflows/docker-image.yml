@@ -13,6 +13,7 @@ jobs:
       with:
         organization: ${{secrets.DOCKER_USER}}
         repository: 'nfeminer'
+        image_name: 'arthurd2/nfeminer'
         registry: registry.hub.docker.com
         login: ${{secrets.DOCKER_USER}}
         password: ${{secrets.DOCKER_PASS}}
