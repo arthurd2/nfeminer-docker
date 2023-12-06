@@ -1,19 +1,26 @@
-name: Docker Image CI
+name: Docker Build and Push
+
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - main  # ajuste conforme necessário
+
 jobs:
-  build:
+  build-and-push:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Docker build and push
-      uses: cloudposse/github-action-docker-build-push@1.14.0
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v1
       with:
-        organization: 'arthurd2'
-        repository: 'nfeminer'
-        image_name: 'arthurd2/nfeminer'
-        registry: registry.hub.docker.com
-        login: 'arthurd2'
-        password: ${{secrets.DOCKER_PASS}}
+        username: 'arthurd2'
+        password: ${{ secrets.DOCKER_PASS }}
+
+    - name: Build and push Docker image
+      run: |
+        docker build -t arthurd2/nfeminer:latest .
+        docker push arthurd2/nfeminer:latest
+
